@@ -30,27 +30,25 @@ These are my personal notes.
 
 ## E. Containers
 * `docker run <image>` : create a new container from image
-* `docker run --rm -d <image>` : flag:`rm` remove container when done; `d` detached
+* `docker run --rm -d <image>` : the `rm` flag removes container when done; `d` for detached
 * `docker start <container>` : starts an existing, previously stopped container
 * `docker stop <container>`
 
 ## F. Attach, Detach
-
 * `docker run <image>` : generates a new instance of a container
 * `docker start <container>` : restarts container, previous stopped
 * `docker start -a <container>` : restarts in attached mode
 * `docker attach <container>`
 * `docker logs <container>` : shows what was printed
-* `docker logs -f <id> ` : the f flag lets you attach
+* `docker logs -f <id> ` : the "f" flag lets you attach
 
 
 ## G. Docker interactive mode
 * `docker run -it <image>` interactive; tty (terminnal), builds from image
 * `docker start -a -i <container>` : attaches and runs interactively
 ### Enter docker container
-`docker exec -it <container> /bin/bash`
-#docker compose exec {image} /bin/bash
-https://devcoops.com/fix-docker-unable-to-start-container-process-exec-bin-bash/
+* `docker exec -it <container> /bin/bash`
+* [link](https://devcoops.com/fix-docker-unable-to-start-container-process-exec-bin-bash/)
 
 ## H. Remove
 * `docker rm <container>`
@@ -63,6 +61,7 @@ https://devcoops.com/fix-docker-unable-to-start-container-process-exec-bin-bash/
 * `docker cp <source> <target>`
 
 ## J. DockerHub
+* Login: `docker login` : make your account on DockerHub first
 * Share: `docker push <image>`
 * Use: `docker pull <image>`
 
@@ -71,8 +70,8 @@ https://devcoops.com/fix-docker-unable-to-start-container-process-exec-bin-bash/
 * `docker run -p 3000:80 -d --rm --name goalsapp goals:latest` example
 
 ### ii. Tags
-* `docker build -t <name>:<tag> ` : flag:`t` for tag
-* `docker build -t goals:latest .\nodejs-attached`
+* `docker build -t <name>:<tag> <directory-with-Dockerfile>` : flag:`t` for tag
+* `docker build -t goals:latest ./nodejs-app`
 
 # II. Volumes
 * `docker volume ls`
