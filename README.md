@@ -3,18 +3,18 @@
 These are my personal notes.
 
 ## A. Overview
-* `docker build .` : this generates an image from the Dockerfile
+* `docker build .` : this generates an image from the Dockerfile in the current directory
 * `docker run <image>` : this creates a container from the image
-### Status
-* `docker ps -a` or `docker container ls`
+### i. Status
 * `docker images`
-### i. Build Image
+* `docker ps -a` or `docker container ls`
+* `docker volume ls`
+### ii. Example of building an image
 * `docker build -t <name>:<tag> <directory-with-Dockerfile>` : flag "-t" for tag
 * `docker build -t goals:latest ./node-app`
-### ii. Example of temporal container
+### iii. Example of temporal container
 * `docker run -p host:docker -d --rm --name <container_name> <image:tag>`
 * `docker run -p 3000:80 -d --rm --name goalsapp goals:latest` example
-
 
 ## B. Create an image from Dockerfile
 * you need a `Dockerfile`
@@ -42,12 +42,11 @@ These are my personal notes.
 * `docker logs <container>` : shows what was printed
 * `docker logs -f <id> ` : the "f" flag lets you attach
 
-
 ## G. Docker interactive mode
 * `docker run -it <image>` interactive; tty (terminnal), builds from image
 * `docker start -a -i <container>` : attaches and runs interactively
 ### Enter docker container
-* `docker exec -it <container> /bin/bash`
+* `docker exec -it <container> /bin/bash` interactive; tty (terminnal), executes a command on docker
 * [link](https://devcoops.com/fix-docker-unable-to-start-container-process-exec-bin-bash/)
 
 ## H. Remove
@@ -74,7 +73,13 @@ These are my personal notes.
 * `docker build -t goals:latest ./nodejs-app`
 
 # II. Volumes
+## A. Status
 * `docker volume ls`
+
+## B.
+* `docker run -v /app/data` Anonymous volume
+* `docker run -v HOST_docker:/app/data` Named olume
+* `docker run -v ./HOST/path/to/code:/app/data` Bind Mount volume
 
 ![types_of_vols](./img/types_vols_small.png)
 
