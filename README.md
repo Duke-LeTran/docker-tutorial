@@ -5,13 +5,19 @@ These are my personal notes.
 ## A. Overview
 * `docker build .` : this generates an image from the Dockerfile in the current directory
 * `docker run <image>` : this creates a container from the image
-### i. Status
+* `docker start <container>` : this starts an existing container
+* `docker compose up -d` : this turns on all the services of a `docker-compose.yml` file
+
+
+### ii. Status
 * `docker images`
 * `docker container ls` or `docker ps -a`
 * `docker volume ls`
+
 ### ii. Example of building an image
 * `docker build -t <name>:<tag> <directory-with-Dockerfile>` : flag "-t" for tag
 * `docker build -t goals:latest ./node-app`
+
 ### iii. Example of temporal container
 * `docker run -p host:docker -d --rm --name <container_name> <image:tag>`
 * `docker run -p 3000:80 -d --rm --name goalsapp goals:latest` example
@@ -64,7 +70,8 @@ These are my personal notes.
 * Share: `docker push <image>`
 * Use: `docker pull <image>`
 
-### i. Containers
+##
+# i. Containers
 * `docker run -d --rm --name goals <image> ` : explicitly name the
 * `docker run -p 3000:80 -d --rm --name goalsapp goals:latest` example
 
@@ -129,7 +136,18 @@ volumes:
   data: # named volume
   logs: # named volume
 ```
+# VI. Installation
+* Amazon Linux 2: https://gist.github.com/npearce/6f3c7826c7499587f00957fee62f8ee9
+* Amazon Linux Extras: https://aws.amazon.com/premiumsupport/knowledge-center/ec2-install-extras-library-software/
+* Windows (Desktop): https://docs.docker.com/desktop/install/windows-install/
+* Ubuntu (Engine): https://docs.docker.com/engine/install/ubuntu/
 
-# IV. Reference
+# V. More useful Docker documentation
+* https://docs.docker.com/compose/
+* https://docs.docker.com/compose/compose-file/
+* https://hub.docker.com/_/python/
+* https://github.com/docker/awesome-compose
+
+# V. Reference
 * Source: https://www.udemy.com/course/docker-kubernetes-the-practical-guide/
 * Teacher: Maximilian Schwarzmuller
