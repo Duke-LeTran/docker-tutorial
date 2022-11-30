@@ -1,0 +1,16 @@
+__pycache__*
+.ipynb_checkpoints/*
+.venv/*
+data/*
+*.ini
+*.log
+*.env
+*.pyc
+*.csv
+*.xlsx
+*.swp
+*.pckl
+
+# Whitelist Test data
+!data/test_data.csv
+!data/test_data.txt
