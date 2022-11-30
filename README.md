@@ -1,5 +1,3 @@
-
-
 # I. Intro: Images and Containers
 ## A. Overview
 * `docker build .` : this generates an image from the Dockerfile
@@ -76,6 +74,7 @@ https://devcoops.com/fix-docker-unable-to-start-container-process-exec-bin-bash/
 # II. Volumes
 * `docker volume ls`
 
+![types_of_vols](./img/types_vols_small.png)
 
 # III. Docker Compose 
 ```
