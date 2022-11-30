@@ -1,31 +1,31 @@
 
 
 # I. Intro: Images and Containers
-## A. Images
-`docker build .` : this generates an image
-docker run 
-## B. containers
-docker ps
+## A. Overview
+* `docker build .` : this generates an image from the Dockerfile
+* `docker run <image>` : this creates a container from the image
+* `docker ps -a` or `docker container ls`
+* `docker images`
 
-## C. Create an image
+## B. Create an image
 * you need a `Dockerfile`
 * then run `docker build .` : which then prints the image to your 
 
-## D. Image from container
+## C. Image from container
 * `docker ps -a` : show all containers
 * `docker images` : show all images
 * `docker image inspect <image>`
 
-## E. Ports
-* `docker run -p 3000:80 <image>` : internal(3000):docker_port(80)
+## D. Ports
+* `docker run -p 3000:80 <image>` : host_port(3000):docker_port(80)
 
-## F. Containers
+## E. Containers
 * `docker run <image>` : create a new container from image
 * `docker run --rm -d <image>` : flag:`rm` remove container when done; `d` detached
 * `docker start <container>`
 * `docker stop <container>`
 
-## G. Attach, Detach
+## F. Attach, Detach
 * `docker run -p 8000:80 <container>` : run with a port
 * `docker run` : generates a new 
 * `docker start` : restarts container, previous stopped
@@ -35,7 +35,7 @@ docker ps
 * `docker logs -f <id> ` : the f flag lets you attach
 
 
-## H. Docker interactive mode
+## G. Docker interactive mode
 * `docker run -it <image>` interactive; tty (terminnal), builds from image
 * `docker start -a -i <container>` : attaches and runs interactively
 ### Enter docker container
@@ -43,17 +43,17 @@ docker ps
 #docker compose exec {image} /bin/bash
 https://devcoops.com/fix-docker-unable-to-start-container-process-exec-bin-bash/
 
-## I. Remove
+## H. Remove
 * `docker rm <container>`
 * `docker rmi <image>`
 * `docker prune <image/container>` : Remove all dangling images (untagged) stopped containers
     * `-a` : Remove all locally stored images
 
-## J. Copy
+## I. Copy
 * `docker cp path/local/. container_name:/path/to/ap`
 * `docker cp <source> <target>`
 
-## K. DockerHub
+## J. DockerHub
 * Share: `docker push <image>`
 * Use: `docker pull <image>`
 
@@ -66,6 +66,8 @@ https://devcoops.com/fix-docker-unable-to-start-container-process-exec-bin-bash/
 * `docker build -t goals:latest .\nodejs-attached`
 
 # II. Volumes
+* `docker volume ls`
+
 
 # III. Docker Compose 
 ```
