@@ -9,7 +9,7 @@
 * `docker images`
 ### i. Build Image
 * `docker build -t <name>:<tag> <directory-with-Dockerfile>` : flag "-t" for tag
-* `docker build -t goals:latest ./nodejs-attached`
+* `docker build -t goals:latest ./node-app`
 ### ii. Example of temporal container
 * `docker run -p host:docker -d --rm --name <container_name> <image:tag>`
 * `docker run -p 3000:80 -d --rm --name goalsapp goals:latest` example
