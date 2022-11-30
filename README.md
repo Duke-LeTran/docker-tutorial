@@ -7,7 +7,7 @@ These are my personal notes.
 * `docker run <image>` : this creates a container from the image
 ### i. Status
 * `docker images`
-* `docker ps -a` or `docker container ls`
+* `docker container ls` or `docker ps -a`
 * `docker volume ls`
 ### ii. Example of building an image
 * `docker build -t <name>:<tag> <directory-with-Dockerfile>` : flag "-t" for tag
