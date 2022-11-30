@@ -8,16 +8,16 @@
 * `docker ps -a` or `docker container ls`
 * `docker images`
 ### i. Build Image
-* `docker build -t <name>:<tag> ` : flag "-t" for tag
-* `docker build -t goals:latest .\nodejs-attached`
+* `docker build -t <name>:<tag> <directory-with-Dockerfile>` : flag "-t" for tag
+* `docker build -t goals:latest ./nodejs-attached`
 ### ii. Example of temporal container
 * `docker run -p host:docker -d --rm --name <container_name> <image:tag>`
 * `docker run -p 3000:80 -d --rm --name goalsapp goals:latest` example
 
 
-## B. Create an image
+## B. Create an image from Dockerfile
 * you need a `Dockerfile`
-* then run `docker build .` : which then prints the image to your 
+* then run `docker build .` : which then prints the image hash to your console
 
 ## C. Image from container
 * `docker ps -a` : show all containers
