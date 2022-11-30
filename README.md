@@ -4,8 +4,11 @@
 ## A. Overview
 * `docker build .` : this generates an image from the Dockerfile
 * `docker run <image>` : this creates a container from the image
+### Status
 * `docker ps -a` or `docker container ls`
 * `docker images`
+###
+* `docker run -p 3000:80 -d --rm --name goalsapp goals:latest` example
 
 ## B. Create an image
 * you need a `Dockerfile`
@@ -22,14 +25,14 @@
 ## E. Containers
 * `docker run <image>` : create a new container from image
 * `docker run --rm -d <image>` : flag:`rm` remove container when done; `d` detached
-* `docker start <container>`
+* `docker start <container>` : starts an existing, previously stopped container
 * `docker stop <container>`
 
 ## F. Attach, Detach
-* `docker run -p 8000:80 <container>` : run with a port
-* `docker run` : generates a new 
-* `docker start` : restarts container, previous stopped
-* `docker start -a` : restarts in attached mode
+
+* `docker run <image>` : generates a new instance of a container
+* `docker start <container>` : restarts container, previous stopped
+* `docker start -a <container>` : restarts in attached mode
 * `docker attach <container>`
 * `docker logs <container>` : shows what was printed
 * `docker logs -f <id> ` : the f flag lets you attach
