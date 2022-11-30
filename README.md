@@ -16,27 +16,29 @@ These are my personal notes.
 
 ### ii. Example of building an image
 * `docker build -t <name>:<tag> <directory-with-Dockerfile>` : flag "-t" for tag
-* `docker build -t goals:latest ./node-app`
+* `docker build -t goals:latest ./node-app` example
 
 ### iii. Example of temporal container
 * `docker run -p host:docker -d --rm --name <container_name> <image:tag>`
 * `docker run -p 3000:80 -d --rm --name goalsapp goals:latest` example
 
 ## B. Create an image from Dockerfile
-* you need a `Dockerfile`
+* you need a `Dockerfile` to build an image
 * then run `docker build .` : which then prints the image hash to your console
 
 ## C. Image from container
 * `docker ps -a` : show all containers
 * `docker images` : show all images
-* `docker image inspect <image>`
+* `docker image inspect <image>` : show more details about the image
 
 ## D. Ports
 * `docker run -p 3000:80 <image>` : host_port(3000):docker_port(80)
 
 ## E. Containers
 * `docker run <image>` : create a new container from image
-* `docker run --rm -d <image>` : the `rm` flag removes container when done; `d` for detached
+* `docker run --rm -d <image>` : some useful flags
+    * the `rm` flag removes container when done
+    * the `d` flag for detached
 * `docker start <container>` : starts an existing, previously stopped container
 * `docker stop <container>`
 
@@ -44,7 +46,7 @@ These are my personal notes.
 * `docker run <image>` : generates a new instance of a container
 * `docker start <container>` : restarts container, previous stopped
 * `docker start -a <container>` : restarts in attached mode
-* `docker attach <container>`
+* `docker attach <container>` : attaches to container
 * `docker logs <container>` : shows what was printed
 * `docker logs -f <id> ` : the "f" flag lets you attach
 
@@ -53,31 +55,30 @@ These are my personal notes.
 * `docker start -a -i <container>` : attaches and runs interactively
 ### Enter docker container
 * `docker exec -it <container> /bin/bash` interactive; tty (terminnal), executes a command on docker
-* [link](https://devcoops.com/fix-docker-unable-to-start-container-process-exec-bin-bash/)
+* [more info link](https://devcoops.com/fix-docker-unable-to-start-container-process-exec-bin-bash/)
 
 ## H. Remove
-* `docker rm <container>`
-* `docker rmi <image>`
-* `docker prune <image/container>` : Remove all dangling images (untagged) stopped containers
-    * `-a` : Remove all locally stored images
+* `docker rm <container>` : remove container
+* `docker rmi <image>` : remote image
+* `docker prune <image/container>` : remove all dangling images (untagged) stopped containers
+    * `-a` : remove all locally stored images
 
 ## I. Copy
-* `docker cp path/local/. container_name:/path/to/ap`
+* `docker cp path/local/. container_name:/docker_path/to/ap`
 * `docker cp <source> <target>`
 
 ## J. DockerHub
 * Login: `docker login` : make your account on DockerHub first
-* Share: `docker push <image>`
-* Use: `docker pull <image>`
+* Share: `docker push <image>` : push to repository
+* Use: `docker pull <image>` : pull from repository
 
-##
-# i. Containers
+## K. Temporal Containers
 * `docker run -d --rm --name goals <image> ` : explicitly name the
 * `docker run -p 3000:80 -d --rm --name goalsapp goals:latest` example
 
-### ii. Tags
+## L. Tags
 * `docker build -t <name>:<tag> <directory-with-Dockerfile>` : flag:`t` for tag
-* `docker build -t goals:latest ./nodejs-app`
+* `docker build -t goals:latest ./node-app` : example of file
 
 # II. Volumes
 ## A. Status
@@ -85,8 +86,8 @@ These are my personal notes.
 
 ## B.
 * `docker run -v /app/data` Anonymous volume
-* `docker run -v HOST_docker:/app/data` Named olume
-* `docker run -v ./HOST/path/to/code:/app/data` Bind Mount volume
+* `docker run -v HOST_docker:/docker_app/data` Named olume
+* `docker run -v ./HOST/path/to/code:/docker_app/data` Bind Mount volume
 
 ![types_of_vols](./img/types_vols_small.png)
 
