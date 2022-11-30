@@ -8,7 +8,7 @@
 * `docker ps -a` or `docker container ls`
 * `docker images`
 ### i. Build Image
-* `docker build -t <name>:<tag> ` : flag:`t` for tag
+* `docker build -t <name>:<tag> ` : flag "-t" for tag
 * `docker build -t goals:latest .\nodejs-attached`
 ### ii. Example of temporal container
 * `docker run -p host:docker -d --rm --name <container_name> <image:tag>`
