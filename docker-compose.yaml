@@ -20,9 +20,9 @@ services:
     ports:
       - '80:80'
     volumes: 
-      - logs:/app/logs
-      - ./backend:/app
-      - /app/node_modules
+      - logs:/app/logs # named volume
+      - ./backend:/app # bind volume
+      - /app/node_modules # anonymous volume
     env_file: 
       - ./env/backend.env
     depends_on:
@@ -32,12 +32,12 @@ services:
     ports: 
       - '3000:3000'
     volumes: 
-      - ./frontend/src:/app/src
+      - ./frontend/src:/app/src # bind volume
     stdin_open: true
     tty: true
     depends_on: 
       - backend
 
 volumes: 
-  data:
-  logs:
+  data: # named volume
+  logs: # named volume

@@ -68,3 +68,48 @@ https://devcoops.com/fix-docker-unable-to-start-container-process-exec-bin-bash/
 # II. Volumes
 
 # III. Docker Compose 
+```
+version: "3.8"
+services:
+  mongodb:
+    image: 'mongo'
+    volumes: 
+      - data:/data/db
+    # environment: 
+    #   MONGO_INITDB_ROOT_USERNAME: max
+    #   MONGO_INITDB_ROOT_PASSWORD: secret
+      # - MONGO_INITDB_ROOT_USERNAME=max
+    env_file: 
+      - ./env/mongo.env
+  backend:
+    build: ./backend
+    # build:
+    #   context: ./backend
+    #   dockerfile: Dockerfile
+    #   args:
+    #     some-arg: 1
+    ports:
+      - '80:80'
+    volumes: 
+      - logs:/app/logs # named volume
+      - ./backend:/app # bind volume
+      - /app/node_modules # anonymous volume
+    env_file: 
+      - ./env/backend.env
+    depends_on:
+      - mongodb
+  frontend:
+    build: ./frontend
+    ports: 
+      - '3000:3000'
+    volumes: 
+      - ./frontend/src:/app/src # bind volume
+    stdin_open: true
+    tty: true
+    depends_on: 
+      - backend
+
+volumes: 
+  data: # named volume
+  logs: # named volume
+```
