@@ -1,4 +1,7 @@
 # I. Intro: Images and Containers
+
+These are my personal notes from the Udemy Docker course
+
 ## A. Overview
 * `docker build .` : this generates an image from the Dockerfile
 * `docker run <image>` : this creates a container from the image
@@ -122,3 +125,7 @@ volumes:
   data: # named volume
   logs: # named volume
 ```
+
+# IV. Reference
+Source: https://www.udemy.com/course/docker-kubernetes-the-practical-guide/
+Teacher: Maximilian Schwarzmuller
