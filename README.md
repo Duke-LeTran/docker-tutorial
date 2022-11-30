@@ -1,6 +1,6 @@
 # I. Intro: Images and Containers
 
-These are my personal notes from the Udemy Docker course
+These are my personal notes.
 
 ## A. Overview
 * `docker build .` : this generates an image from the Dockerfile
