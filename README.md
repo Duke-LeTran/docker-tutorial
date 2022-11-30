@@ -7,8 +7,13 @@
 ### Status
 * `docker ps -a` or `docker container ls`
 * `docker images`
-###
+### i. Build Image
+* `docker build -t <name>:<tag> ` : flag:`t` for tag
+* `docker build -t goals:latest .\nodejs-attached`
+### ii. Example of temporal container
+* `docker run -p host:docker -d --rm --name <container_name> <image:tag>`
 * `docker run -p 3000:80 -d --rm --name goalsapp goals:latest` example
+
 
 ## B. Create an image
 * you need a `Dockerfile`
@@ -64,7 +69,7 @@ https://devcoops.com/fix-docker-unable-to-start-container-process-exec-bin-bash/
 * `docker run -d --rm --name goals <image> ` : explicitly name the
 * `docker run -p 3000:80 -d --rm --name goalsapp goals:latest` example
 
-### ii. Images
+### ii. Tags
 * `docker build -t <name>:<tag> ` : flag:`t` for tag
 * `docker build -t goals:latest .\nodejs-attached`
 
