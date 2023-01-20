@@ -4,41 +4,38 @@ These are my personal notes.
 
 # I. Overview
 ## A. Concepts
-* A `Dockerfile` is like a "Makefile", used to generate an `image`
+* A `Dockerfile` is analougsly similar a "Makefile", but used to generate a docker `image`
 * A docker `image` is like a "class" or the model for a container
 * A docker `container` is like an **instance** of an `image`, i.e., you can spin up as many containers as you'd like from the same image
 * You can stop and re-start a previously spun up `container`
 * If you edit your `Dockerfile`, you may need to re-build your `image`
-* a docker Volume can help persist data, help organize data within a container - it's whole full class
+* a docker Volume can help persist data, help organize data within a container - it's whole full class in Docker
 
 ## B. Quick start
 * `docker build .` : this generates an image from the Dockerfile in the current directory
 * `docker run <image>` : this creates a container from the image
 * `docker start <container>` : this starts an existing container
-* `docker compose up -d` : this turns on all the services of a `docker-compose.yml` file
+* `docker compose up -d` : this turns on all the services of a `docker-compose.yml` file in detached mode
 
 
 ## C. Status
-* `docker images`
-* `docker container ls` or `docker ps -a`
-* `docker volume ls`
+* images: `docker images`
+* containers: `docker container ls` or `docker ps -a`
+* volumes: `docker volume ls`
 
 ## D. Example of building an image
+
 * `docker build -t <name>:<tag> <directory-with-Dockerfile>` : flag "-t" for tag
 * `docker build -t goals:latest ./node-app` example
 
-### v. Example of temporal container
-* `docker run -p host:docker -d --rm --name <container_name> <image:tag>`
-* `docker run -p 3000:80 -d --rm --name goalsapp goals:latest` example
-
-## B. Create an image from Dockerfile
+## E. Create an image from Dockerfile
 * you need a `Dockerfile` to build an image
 * then run `docker build .` : which then prints the image hash to your console
 
 # II. Common commands
 ## A. Images
 * `docker images` : show all images
-* `docker image inspect <image>` : show more details about the image
+* `docker image inspect <image>` : show more details about the specific image
 * `docker run <image>` : generates a new instance of a container
 
 
@@ -51,17 +48,20 @@ These are my personal notes.
 * `docker stop <container>`
 
 ## C. Temporal containers from images
-* `docker run -d --rm --name goals <image> ` : explicitly name the
+* `docker run -d --rm --name goals <image> ` : explicitly name the container `goals`
 * `docker run -p 3000:80 -d --rm --name goalsapp goals:latest` example
 
 ## D. Tags
+* tags are useful for versioning of `images` as you rebuild them
 * `docker build -t <name>:<tag> <directory-with-Dockerfile>` : flag:`t` for tag
 * `docker build -t goals:latest ./node-app` : example of file
 
 ## E. Ports
-* `docker run -p 3000:80 <image>` : host_port(3000):docker_port(80)
+* You may need to map the container's port to the host for your app
+* `docker run -p 3000:80 <image>` : host\_port(3000):docker\_port(80)
 
 ## F. DockerHub
+* This analogously similar to Github but for your images
 * Login: `docker login` : make your account on DockerHub first
 * Share: `docker push <image>` : push to repository
 * Use: `docker pull <image>` : pull from repository
@@ -76,25 +76,30 @@ These are my personal notes.
 
 ## B. Docker interactive mode
 * `docker run -it <image>` : runs container from image, interactively
-  * the '-i' flag means interactive
-  * the '-t' flag stands for tty (or terminal), builds from image
+  * the `-i` flag means interactive
+  * the `-t` flag stands for tty (or terminal), 
+  * this creates a container from an image
 * `docker start -a -i <container>` : attaches and runs interactively
 
-## C. Enter unattached docker container
-* `docker exec -it <container> /bin/bash` interactive; tty (terminnal), executes a command on docker, in this case a `/bin/bash` shell
+## C. Enter an unattached docker container
+* `docker exec -it <container> /bin/bash` : enters a container
+  * the `-i` flag means interactive
+  * the `-t` flag stands for tty (or terminal), 
+  * executes a command on docker, in this case a `/bin/bash` shell
 * [more info link](https://devcoops.com/fix-docker-unable-to-start-container-process-exec-bin-bash/)
 
 ## D. Copy files to/from host/container
-* `docker cp path/local/. container_name:/docker_path/to/ap`
+Sometimes you need to copy files to/from the host/container
 * `docker cp <source> <target>`
+* `docker cp path/local/. container_name:/docker_path/to/app`
+
 
 # IV. Remove: Clean-up
 * `docker rm <container>` : remove container
-* `docker rmi <image>` : remote image
+* `docker rmi <image>` : remove image
 * `docker prune <image/container>` : remove all dangling images (untagged) stopped containers
     * `-a` : remove all locally stored images
-    * be careful with this one bc it will delete everything
-
+    * be careful with this the `-a` flag bc it will delete everything, including running containers
 
 # IV. Volumes
 ## A. Status
@@ -106,9 +111,9 @@ These are my personal notes.
 3. Bind mount volume - persistent, host path explicitly defined by you
 
 ## C. Some volume flags
-* `docker run -v /app/data` Anonymous volume
-* `docker run -v HOST_docker:/docker_app/data` Named volume
-* `docker run -v ./HOST/path/to/code:/docker_app/data` Bind Mount volume
+* Anonymous volume: `docker run -v /app/data` 
+* Named volume: `docker run -v HOST_docker:/docker_app/data` 
+* Bind Mount volume: `docker run -v ./HOST/path/to/code:/docker_app/data` 
 
 ![types_of_vols](./img/types_vols_small.png)
 
