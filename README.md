@@ -33,13 +33,22 @@ These are my personal notes.
 * then run `docker build .` : which then prints the image hash to your console
 
 # II. Common commands
-## A. Images
+## A. Dockerfile
+* `RUN` is an image build step, the state of the container after a RUN command will be committed to the container image. A Dockerfile can have many RUN steps that layer on top of one another to build the image.
+* `CMD` is the command the container executes by default when you launch the built image. A Dockerfile will only use the final CMD defined. The CMD can be overridden when starting a container with docker run $image $other_command.
+* `ENTRYPOINT` is also closely related to CMD and can modify the way a container is started from an image.
+* TLDR: you do all the `RUN` needed to setup your environment, and your (only) `CMD` launches the process running in your container, example, for nginx, extract from github.com/nginxinc/docker-nginx/blob/… you see the line CMD ["nginx", "-g", "daemon off;"] – 
+user2915097
+May 26, 2016 at 14:00
+
+
+## B. Images
 * `docker images` : show all images
 * `docker image inspect <image>` : show more details about the specific image
 * `docker run <image>` : generates a new instance of a container
 
 
-## B. Containers
+## C. Containers
 * `docker run <image>` : create a new container from image
 * `docker run --rm -d <image>` : some useful flags
     * the `rm` flag removes container when done
@@ -47,20 +56,20 @@ These are my personal notes.
 * `docker start <container>` : starts an existing, previously stopped container
 * `docker stop <container>`
 
-## C. Temporal containers from images
+## D. Temporal containers from images
 * `docker run -d --rm --name goals <image> ` : explicitly name the container `goals`
 * `docker run -p 3000:80 -d --rm --name goalsapp goals:latest` example
 
-## D. Tags
+## E. Tags
 * tags are useful for versioning of `images` as you rebuild them
 * `docker build -t <name>:<tag> <directory-with-Dockerfile>` : flag:`t` for tag
 * `docker build -t goals:latest ./node-app` : example of file
 
-## E. Ports
+## F. Ports
 * You may need to map the container's port to the host for your app
 * `docker run -p 3000:80 <image>` : host\_port(3000):docker\_port(80)
 
-## F. DockerHub
+## G. DockerHub
 * This analogously similar to Github but for your images
 * Login: `docker login` : make your account on DockerHub first
 * Share: `docker push <image>` : push to repository
@@ -73,6 +82,8 @@ These are my personal notes.
 * `docker logs <container>` : shows what was printed
 * `docker logs -f <id> ` : the "f" flag lets you attach
 * attaching is just watching the `stdout` print of the container; use `docker exec -it <container> /bin/bash` to enter container (see below).
+* `CTRL-P, CTRL-Q` - detaches from current container (don't use `CTRL-C`)
+
 
 ## B. Docker interactive mode
 * `docker run -it <image>` : runs container from image, interactively
@@ -182,3 +193,6 @@ volumes:
 # VIII. Reference
 * Source: https://www.udemy.com/course/docker-kubernetes-the-practical-guide/
 * Teacher: Maximilian Schwarzmuller
+
+# IX. Links
+* https://stackoverflow.com/questions/37461868/difference-between-run-and-cmd-in-a-dockerfile
