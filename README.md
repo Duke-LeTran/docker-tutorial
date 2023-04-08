@@ -12,7 +12,7 @@ These are my personal notes.
 * a docker Volume can help persist data, help organize data within a container - it's whole full class in Docker
 
 ## B. Quick start
-* `docker build .` : this generates an image from the Dockerfile in the current directory
+* `docker build -t duke_app:test .` : this generates an image from the Dockerfile in the current directory
 * `docker run <image>` : this creates a container from the image
 * `docker start <container>` : this starts an existing container
 * `docker compose up -d` : this turns on all the services of a `docker-compose.yml` file in detached mode
@@ -25,7 +25,7 @@ These are my personal notes.
 
 ## D. Example of building an image
 
-* `docker build -t <name>:<tag> <directory-with-Dockerfile>` : flag "-t" for tag
+* `docker build -t <name>:<tag> <path_to_Dockerfile>` : flag "-t" for tag
 * `docker build -t goals:latest ./node-app` example
 
 ## E. Create an image from Dockerfile
