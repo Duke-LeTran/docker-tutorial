@@ -2,6 +2,10 @@
 
 These are my personal notes.
 
+# Table of Contents
+[I. Overview][# I. Overview]
+[VIII. Reference][# VIII. Reference]
+
 # I. Overview
 ## A. Concepts
 * A `Dockerfile` is analougsly similar a "Makefile", but used to generate a docker `image`
@@ -13,7 +17,8 @@ These are my personal notes.
 
 ## B. Quick start
 * `docker build -t duke_app:test .` : this generates an image from the Dockerfile in the current directory
-* `docker run <image>` : this creates a container from the image
+* `docker run -d --rm --name <container> <image>` : this creates a container from the image
+* `docker exec -it <container> /bin/bash` : 
 * `docker start <container>` : this starts an existing container
 * `docker compose up -d` : this turns on all the services of a `docker-compose.yml` file in detached mode
 
@@ -37,10 +42,8 @@ These are my personal notes.
 * `RUN` is an image build step, the state of the container after a RUN command will be committed to the container image. A Dockerfile can have many RUN steps that layer on top of one another to build the image.
 * `CMD` is the command the container executes by default when you launch the built image. A Dockerfile will only use the final CMD defined. The CMD can be overridden when starting a container with docker run $image $other_command.
 * `ENTRYPOINT` is also closely related to CMD and can modify the way a container is started from an image.
-* TLDR: you do all the `RUN` needed to setup your environment, and your (only) `CMD` launches the process running in your container, example, for nginx, extract from github.com/nginxinc/docker-nginx/blob/… you see the line CMD ["nginx", "-g", "daemon off;"] – 
-user2915097
-May 26, 2016 at 14:00
-
+* TLDR: you do all the `RUN` needed to setup your environment, and your (only) `CMD` launches the process running in your container, example, for nginx, extract from github.com/nginxinc/docker-nginx/blob/… you see the line CMD ["nginx", "-g", "daemon off;"] – user2915097, May 26, 2016 at 14:008 
+* `CMD ["tail", "-f", "/dev/null"]` - run this at the end of the docker file to run infinitely
 
 ## B. Images
 * `docker images` : show all images
@@ -57,7 +60,7 @@ May 26, 2016 at 14:00
 * `docker stop <container>`
 
 ## D. Temporal containers from images
-* `docker run -d --rm --name goals <image> ` : explicitly name the container `goals`
+* `docker run -d --rm --name <container_name> <image> ` : explicitly name the container `goals`
 * `docker run -p 3000:80 -d --rm --name goalsapp goals:latest` example
 
 ## E. Tags
@@ -82,7 +85,7 @@ May 26, 2016 at 14:00
 * `docker logs <container>` : shows what was printed
 * `docker logs -f <id> ` : the "f" flag lets you attach
 * attaching is just watching the `stdout` print of the container; use `docker exec -it <container> /bin/bash` to enter container (see below).
-* `CTRL-P, CTRL-Q` - detaches from current container (don't use `CTRL-C`)
+* `CTRL-P, CTRL-Q` - detaches from current container (don't use `CTRL-C`): [More][1]
 
 
 ## B. Docker interactive mode
@@ -196,3 +199,4 @@ volumes:
 
 # IX. Links
 * https://stackoverflow.com/questions/37461868/difference-between-run-and-cmd-in-a-dockerfile
+* [1]: https://www.baeldung.com/ops/docker-attach-detach-container
