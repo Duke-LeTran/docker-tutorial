@@ -131,6 +131,8 @@ Sometimes you need to copy files to/from the host/container
 
 ![types_of_vols](./img/types_vols_small.png)
 
+If you're running on a windows docker, it's like this:
+* Microsoft: `docker run -v C:\path\to\config.json:/app/config.json`
 # V. Docker Compose
 
 See below for an example:
