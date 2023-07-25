@@ -182,6 +182,45 @@ volumes:
   data: # named volume
   logs: # named volume
 ```
+# Temporal --rm
+* To set `AutoRemove` to false for a running container, you can use the docker update command. Here's how to do it: `docker update --rm=false <container_id>`
+* if you want to check if running docker container was started with `--rm`, you can check with `docker inspect <container_id>` and check for:
+
+...
+"HostConfig": {
+    "AutoRemove": true,
+    ...
+},
+...
+
+# Backing up a running container volume
+
+## 1. Create a Docker volume
+
+First, create a Docker volume to store the MariaDB data outside the container. This volume will persist even if you stop and remove the container:
+
+`docker volume create mariadb_data_backup`
+
+## 2. Back up the data from the running container
+
+Next, you'll copy the data from the running MariaDB container to the newly created volume. You can use the docker cp command to achieve this.
+
+`docker cp <container_id>:/var/lib/mysql - | docker run -i --rm -v mariadb_data_backup:/backup busybox tar -xvf -
+`
+
+This command will create a backup of the MariaDB data directory /var/lib/mysql from the running container and store it in the mariadb_data_backup volum
+
+## 3. Restore the Data
+
+`docker run -d --name restored-mariadb -e MARIADB_ROOT_PASSWORD=mysecretpassword -v mariadb_data_backup:/var/lib/mysql mariadb:latest`
+
+Here, we're assuming you have already created the mariadb_data_backup volume as described earlier.
+
+This will start a new MariaDB container named restored-mariadb using the data from the backup volume.
+
+Please note that this method only backs up the data directory of MariaDB. If you have any additional configuration files or settings outside the data directory that you need to preserve, you should back them up separately. Also, ensure that your MariaDB container is not actively writing data during the backup process to avoid data inconsistencies.
+
+
 
 # VI. Installation
 * Amazon Linux 2: https://gist.github.com/npearce/6f3c7826c7499587f00957fee62f8ee9
